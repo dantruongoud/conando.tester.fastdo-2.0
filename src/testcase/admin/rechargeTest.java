@@ -7,17 +7,7 @@ import page_locator.SignInPage;
 import page_locator.admin.admin_requestAmountPage;
 import page_locator.admin.rechargePage;
 
-
 public class rechargeTest {
-    int testcase;
-    String amount;
-    String note;
-
-    public rechargeTest(int testcase, String amount, String note) {
-        this.testcase = testcase;
-        this.amount = amount;
-        this.note = note;
-    }
 
     public static void main(String[] args) {
         try {

@@ -13,6 +13,7 @@ import java.awt.event.KeyEvent;
 import java.awt.Robot;
 
 public class create_banner {
+    
     private WebDriver driver;
 
     @FindBy(css = "a[href='/admin/config/banners']")
@@ -42,9 +43,9 @@ public class create_banner {
     }
 
     public void print() {
-        title_input.clear();
-        System.out.println("PASSED");
+        System.out.println("Status: PASSED");
         System.out.println("=========================");
+        title_input.clear();
     }
 
     public void uploadImage(String upfile_btn, String typeFind) {

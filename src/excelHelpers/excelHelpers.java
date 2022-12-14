@@ -30,7 +30,7 @@ public class excelHelpers {
 
     public void setExcelSheet(String SheetName) throws Exception {
         try {
-            String ExcelPath = "D:\\Automation_Conando\\Fastdo_POM\\src\\conando\\tester\\resources\\dataTest.xlsx";
+            String ExcelPath = "D:\\Automation_Conando\\Fastdo_2.0\\src\\resources\\dataTest.xlsx";
             File f = new File(ExcelPath);
 
             if (!f.exists()) {

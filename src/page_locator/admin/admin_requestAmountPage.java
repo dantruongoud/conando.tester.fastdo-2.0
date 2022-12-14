@@ -13,6 +13,7 @@ import java.awt.AWTException;
 import java.awt.event.KeyEvent;
 
 public class admin_requestAmountPage {
+    
     private WebDriver driver;
 
     @FindBy(xpath = "//span[@class='ml-2'][contains(text(),'Quản lý giao dịch')]")

@@ -6,9 +6,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class addUser_incorpPage {
-    
+
     private WebDriver driver;
-    
+
     SignInPage get = new SignInPage(driver);
 
     @FindBy(xpath = "//span[contains(text(),'Người dùng')]")
@@ -21,13 +21,16 @@ public class addUser_incorpPage {
     private WebElement popup;
 
     @FindBy(xpath = "//a[@class='button is-link']")
-    private WebElement button;
+    public WebElement button;
 
     @FindBy(xpath = "//input[@placeholder='Nhập địa chỉ email của người dùng...']")
-    private WebElement email;
+    public WebElement email;
 
     @FindBy(xpath = "//input[@placeholder='Nhập họ']")
     private WebElement lastname_input;
+
+    @FindBy(xpath = "//input[@placeholder='Nhập tên']")
+    private WebElement firstname_input;
 
     public addUser_incorpPage(WebDriver driver) {
         this.driver = driver;
@@ -59,14 +62,16 @@ public class addUser_incorpPage {
         try {
             email.clear();
             lastname_input.clear();
+            firstname_input.clear();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void createUser(String username, String lastname) {
+    public void createUser(String username, String lastname, String firstname) {
         email.sendKeys(username);
         lastname_input.sendKeys(lastname);
+        firstname_input.sendKeys(firstname);
         button.click();
     }
 

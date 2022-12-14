@@ -11,20 +11,23 @@ public class edit_infoPage {
     @FindBy(xpath = "//span[@class='ml-2 has-text-white']")
     private WebElement naviga;
 
-    @FindBy(xpath = "//input[@placeholder='Nhập họ']")
+    @FindBy(xpath = "//input[@placeholder='Nhập họ (*)']")
     private WebElement firstname_input;
 
-    @FindBy(xpath = "//input[@placeholder='Nhập tên']")
+    @FindBy(xpath = "//input[@placeholder='Nhập tên (*)']")
     private WebElement lastname_input;
 
-    @FindBy(xpath = "//span[contains(text(),'Cập nhật')]")
-    private WebElement save;
+    @FindBy(xpath = "//input[@placeholder='Nhập số điện thoại (*)']")
+    private WebElement phone_input;
 
     @FindBy(xpath = "//input[@placeholder='Nhập mật khẩu cũ']")
     private WebElement pass_old_input;
 
     @FindBy(xpath = "//input[@placeholder='Nhập mật khẩu mới']")
     private WebElement pass_new_input;
+
+    @FindBy(xpath = "//span[contains(text(),'Cập nhật')]")
+    private WebElement save;
 
     public edit_infoPage(WebDriver driver) {
         this.driver = driver;
@@ -53,9 +56,10 @@ public class edit_infoPage {
         return getTitle().equals(a);
     }
 
-    public void change_info(String firstname, String lastname, String passold, String passnew) {
+    public void change_info(String firstname, String lastname, String phone, String passold, String passnew) {
         firstname_input.sendKeys(firstname);
         lastname_input.sendKeys(lastname);
+        phone_input.sendKeys(phone);
         pass_old_input.sendKeys(passold);
         pass_new_input.sendKeys(passnew);
         save.click();
@@ -65,6 +69,7 @@ public class edit_infoPage {
         try {
             firstname_input.clear();
             lastname_input.clear();
+            phone_input.clear();
             pass_old_input.clear();
             pass_new_input.clear();
         } catch (Exception e) {
@@ -74,9 +79,9 @@ public class edit_infoPage {
     }
 
     public void print() {
-        System.out.println("Passed");
-        clearTXT();
+        System.out.println("Status: Passed");
         System.out.println("=========================");
+        clearTXT();
     }
 
 }

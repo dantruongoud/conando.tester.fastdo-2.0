@@ -79,8 +79,8 @@ public class edit_incorpPage {
     }
 
     public void print() {
-        System.out.println("Passed");
-        clearTXT();
+        System.out.println("Status: Passed");
         System.out.println("=========================");
+        clearTXT();
     }
 }

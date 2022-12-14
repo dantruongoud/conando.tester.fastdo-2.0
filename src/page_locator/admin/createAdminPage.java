@@ -8,6 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import page_locator.SignInPage;
 
 public class createAdminPage {
+
     private WebDriver driver;
 
     @FindBy(xpath = "//span[contains(text(),'Cấu hình hệ thống')]")
@@ -50,10 +51,10 @@ public class createAdminPage {
         return getTitle().equals(a);
     }
 
-    public void create_account(String email, String lastname, String firstname, String password) {
+    public void create_account(String email, String firstname, String lastname, String password) {
         email_input.sendKeys(email);
-        lastname_input.sendKeys(lastname);
         firstname_input.sendKeys(firstname);
+        lastname_input.sendKeys(lastname);
         password_input.sendKeys(password);
         save_btn.click();
     }
@@ -70,8 +71,8 @@ public class createAdminPage {
     }
 
     public void print() {
-        System.out.println("Passed");
-        cleartxt();
+        System.out.println("Status: Passed");
         System.out.println("=========================");
+        cleartxt();
     }
 }

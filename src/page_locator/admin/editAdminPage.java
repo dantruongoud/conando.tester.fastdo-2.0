@@ -12,10 +12,10 @@ public class editAdminPage {
     public WebElement naviga;
 
     @FindBy(css = "input[placeholder='Nhập họ (*)']")
-    private WebElement lastname_input;
+    private WebElement firstname_input;
 
     @FindBy(css = "input[placeholder='Nhập tên (*)']")
-    private WebElement firstname_input;
+    private WebElement lastname_input;
 
     @FindBy(css = "input[placeholder='Nhập số điện thoại (*)']")
     private WebElement phone_input;
@@ -39,16 +39,16 @@ public class editAdminPage {
         return getTitle().equals(title);
     }
 
-    public void editAdmin(String lastname, String firstname, String phone, String passwordold, String passwordnew) {
-        lastname_input.sendKeys(lastname);
+    public void editAdmin(String firstname, String lastname, String phone, String passwordold, String passwordnew) {
         firstname_input.sendKeys(firstname);
+        lastname_input.sendKeys(lastname);
         phone_input.sendKeys(phone);
         passwordold_input.sendKeys(passwordold);
         passwordnew_input.sendKeys(passwordnew);
     }
 
     public void print() {
-        System.out.println("PASSED");
+        System.out.println("Status: PASSED");
         System.out.println("=========================");
         cleartxt();
     }

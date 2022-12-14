@@ -3,9 +3,9 @@ package testcase.admin;
 import org.openqa.selenium.WebDriver;
 
 import common.baseSetup;
+import excelHelpers.excelHelpers;
 import page_locator.SignInPage;
 import page_locator.admin.createAdminPage;
-
 
 public class createAdminTest {
     int testcase;
@@ -24,59 +24,49 @@ public class createAdminTest {
             baseSetup init = new baseSetup();
             WebDriver driver = init.initChromeDriver();
             SignInPage using = new SignInPage(driver);
-            using.login_admin();
             createAdminPage account_admin = new createAdminPage(driver);
+            excelHelpers excel = new excelHelpers();
+            excel.setExcelSheet("admin - createAdmin");
+
+            using.login_admin();
+
             account_admin.setting.click();
             using.waitForPageLoaded();
+
             account_admin.accountAdmin.click();
             using.waitForPageLoaded();
+
             if (account_admin.verifyTitle()) {
                 account_admin.create_btn.click();
-                createAdminTest[] list_data_test = {
-                        new createAdminTest(1, "", "Nguyen", "Trường", "123456"),
-                        new createAdminTest(2, "ndtruong", "nguyen", "Trường", "123456"),
-                        new createAdminTest(3, "nguyendantruongg@gmail.com", "", "Trường", "123456"),
-                        new createAdminTest(4, "nguyendantruongg@gmail.com", "Nguyen", "", "132456"),
-                        new createAdminTest(5, "nguyendantruongg@gmail.com", "Nguyen", "Trường", ""),
-                        new createAdminTest(6, "ndtruong.conando@gmail.com", "Nguyen", "Trường", "123456"),
-                        new createAdminTest(7, "nguyendantruongg@gmail.com", "Nguyen", "Trường", "123456")
-                };
-                for (int i = 0; i < list_data_test.length; i++) {
+
+                for (int i = 1; i < 7; i++) {
                     System.out.println("=========================");
-                    System.out.println("Testcase: " + list_data_test[i].testcase);
-                    account_admin.create_account(list_data_test[i].email, list_data_test[i].lastname,
-                            list_data_test[i].firstname, list_data_test[i].password);
+                    System.out.println("Testcase: " + excel.getCellData("TCID", i));
+                    account_admin.create_account(excel.getCellData("email", i), excel.getCellData("firstname", i),
+                            excel.getCellData("lastname", i), excel.getCellData("password", i));
                     Thread.sleep(1200);
                     String noti = using.messgaeError_tagline();
                     switch (noti) {
                         case "Bạn chưa nhập địa chỉ email!":
-                            System.out.println(noti);
                             account_admin.print();
                             break;
                         case "Địa chỉ email không đúng!":
-                            System.out.println(noti);
                             account_admin.print();
                             break;
                         case "Bạn chưa nhập họ và tên cho tài khoản!":
-                            System.out.println(noti);
                             account_admin.print();
                             break;
                         case "Bạn chưa nhật mật khẩu cho tài khoản!":
-                            System.out.println(noti);
                             account_admin.print();
                             break;
                         case "Email này đã được sử dụng, vui lòng sử dụng email khác!":
-                            System.out.println(noti);
                             account_admin.print();
                             break;
                         default:
-                            noti = using.messgaeError_tagline();
-                            if (noti.equals("Đã cập nhật tài khoản thành công!")) {
-                                System.out.println(noti);
-                                System.out.println("Passed");
-                                System.out.println("=========================");
+                            if (noti.equals("Đã tạo tài khoản thành công!")) {
+                                using.passed();
                             } else {
-                                System.out.println("Failed");
+                                using.failed();
                             }
                             break;
                     }

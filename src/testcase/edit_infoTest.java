@@ -5,31 +5,15 @@ import org.openqa.selenium.WebDriver;
 import page_locator.SignInPage;
 import page_locator.edit_infoPage;
 import common.baseSetup;
+import excelHelpers.excelHelpers;
 
 public class edit_infoTest {
 
-    int testcase;
-    String firstname;
-    String lastname;
-    String passold;
-    String passnew;
-
-    public edit_infoTest(int testcase, String firstname, String lastname, String passold, String passnew) {
-        this.testcase = testcase;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.passold = passold;
-        this.passnew = passnew;
-    }
-
     public static void main(String[] args) {
         try {
-            edit_infoTest[] list_data_test = {
-                    new edit_infoTest(1, "", "", "", ""),
-                    new edit_infoTest(2, "NGUYEN", "DAN TRUONG", "", "123456"),
-                    new edit_infoTest(3, "NGUYEN", "DAN TRUONG", "1234567", "12346798"),
-                    new edit_infoTest(4, "NGUYEN", "DAN TRUONG", "123456", "123456")
-            };
+
+            excelHelpers excel = new excelHelpers();
+            excel.setExcelSheet("editInfo");
 
             baseSetup init = new baseSetup();
             WebDriver driver = init.initChromeDriver();
@@ -41,35 +25,49 @@ public class edit_infoTest {
 
             if (edit_info.verify_title()) {
 
-                for (int i = 0; i < list_data_test.length; i++) {
+                for (int i = 1; i < 10; i++) {
 
                     edit_info.clearTXT();
 
                     System.out.println("=========================");
 
-                    System.out.println("Testcase: " + list_data_test[i].testcase);
+                    System.out.println("Testcase: " + excel.getCellData("TCID", i));
 
-                    edit_info.change_info(list_data_test[i].firstname, list_data_test[i].lastname,
-                            list_data_test[i].passold, list_data_test[i].passnew);
+                    edit_info.change_info(excel.getCellData("firstname", i), excel.getCellData("lastname", i),
+                            excel.getCellData("phone", i), excel.getCellData("passold", i),
+                            excel.getCellData("passnew", i));
                     Thread.sleep(1200);
 
                     String noti = using.messgaeError_tagline();
-                    
+
                     switch (noti) {
                         case "Bạn chưa nhập họ và tên cho tài khoản!":
-                            System.out.println(noti);
                             edit_info.print();
                             break;
                         case "Mật khẩu cũ không chính xác!":
-                            System.out.println(noti);
                             edit_info.print();
                             break;
                         case "Đã cập nhật thông tin thành công!":
-                            System.out.println(noti);
-                            using.passed();
+                            edit_info.print();
+                            break;
+                        case "Bạn chưa nhập số điện thoại!":
+                            edit_info.print();
+                            break;
+                        case "Số điện thoại không đúng!":
+                            edit_info.print();
+                            break;
+                        case "Bạn chưa nhập mật khẩu cũ!":
+                            edit_info.print();
+                            break;
+                        case "Bạn chưa nhập mật khẩu mới!":
+                            edit_info.print();
                             break;
                         default:
-                            using.failed();
+                            if (noti.equals("Đã cập nhật thông tin và mật khẩu thành công!")) {
+                                using.passed();
+                            } else {
+                                using.failed();
+                            }
                             break;
                     }
                     Thread.sleep(1200);

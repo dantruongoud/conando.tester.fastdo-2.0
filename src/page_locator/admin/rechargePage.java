@@ -11,6 +11,7 @@ import java.awt.Robot;
 import java.awt.event.KeyEvent;
 
 public class rechargePage {
+
     private WebDriver driver;
 
     @FindBy(css = ".icon-text.has-text-link")

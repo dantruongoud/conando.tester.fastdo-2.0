@@ -51,9 +51,9 @@ public class editUserPage {
     }
 
     public void print() {
-        System.out.println("Passed");
-        cleartxt();
+        System.out.println("Status: Passed");
         System.out.println("=========================");
+        cleartxt();
     }
 
     public void edit(String phone, String firstname, String lastname) {

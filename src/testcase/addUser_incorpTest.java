@@ -6,27 +6,14 @@ import page_locator.SignInPage;
 import page_locator.addUser_incorpPage;
 import page_locator.edit_incorpPage;
 import common.baseSetup;
+import excelHelpers.excelHelpers;
 
 public class addUser_incorpTest {
-    
-    int testcase;
-    String username;
-    String lastname;
-
-    public addUser_incorpTest(int testcase, String username, String lastname) {
-        this.testcase = testcase;
-        this.username = username;
-        this.lastname = lastname;
-    }
 
     public static void main(String[] args) {
         try {
-            addUser_incorpTest[] list_data_test = {
-                    new addUser_incorpTest(1, "", "Nguyen"),
-                    new addUser_incorpTest(2, "ndtruong.conando@gmail.com", ""),
-                    new addUser_incorpTest(3, "ndtruong@gmail.com", ""),
-                    new addUser_incorpTest(4, "ndruong@gmail.com", "Nguyen"),
-            };
+            excelHelpers excel = new excelHelpers();
+            excel.setExcelSheet("AddUserinCorp");
 
             baseSetup init = new baseSetup();
             WebDriver driver = init.initChromeDriver();
@@ -38,44 +25,57 @@ public class addUser_incorpTest {
             get.clickNavigation();
             get.find.click();
             addUser.naviga_user();
+            Thread.sleep(1200);
 
             if (addUser.verifyTitle()) {
-                for (int i = 0; i < list_data_test.length; i++) {
-                    System.out.println("=========================");
 
-                    System.out.println("Testcase: " + list_data_test[i].testcase);
-                    addUser.createUser(list_data_test[i].username, list_data_test[i].lastname);
-                    Thread.sleep(1000);
+                System.out.println("Testcase: " + excel.getCellData("TCID", 1));
+                addUser.email.sendKeys(excel.getCellData("email", 1));
+                addUser.button.click();
 
-                    String noti = using.messgaeError_tagline();
-                    Thread.sleep(1000);
-                    switch (noti) {
-                        case "Bạn chưa nhập địa chỉ email, hoặc địa chỉ email không đúng !":
-                            System.out.println(noti);
-                            addUser.print();
-                            break;
+                String noti = using.messgaeError_tagline();
 
-                        case "Bạn chưa nhập họ và tên cho tài khoản!":
-                            System.out.println(noti);
-                            addUser.print();
-                            break;
+                if (noti.equals("Địa chỉ email này đã có trong tổ chức của bạn.")) {
 
-                        case "Địa chỉ email này đã có trong tổ chức của bạn.":
-                            System.out.println(noti);
-                            addUser.print();
-                            break;
+                    addUser.print();
 
-                        default:
-                            noti = using.messgaeError_tagline();
-                            if (noti != null) {
-                                System.out.println(noti);
+                    Thread.sleep(1500);
+
+                    for (int i = 2; i < 7; i++) {
+                        System.out.println("=========================");
+
+                        System.out.println("Testcase: " + excel.getCellData("TCID", i));
+                        addUser.createUser(excel.getCellData("email", i), excel.getCellData("lastname", i),
+                                excel.getCellData("firstname", i));
+                        Thread.sleep(1000);
+
+                        noti = using.messgaeError_tagline();
+
+                        switch (noti) {
+                            case "Địa chỉ email không đúng định dạng!":
                                 addUser.print();
-                            } else {
-                                using.failed();
-                            }
-                            break;
+                                break;
+
+                            case "Bạn chưa nhập họ và tên cho tài khoản!":
+                                addUser.print();
+                                break;
+
+                            case "Bạn chưa nhập địa chỉ email!":
+                                addUser.print();
+                                break;
+
+                            default:
+                                if (noti.equals("Đang gửi email thông tin tài khoản...")) {
+                                    using.passed();
+                                } else {
+                                    using.failed();
+                                }
+                                break;
+                        }
+                        Thread.sleep(1200);
                     }
-                    Thread.sleep(1000);
+                } else {
+                    using.failed();
                 }
             } else {
                 using.failed();

@@ -156,12 +156,13 @@ public class SignInPage {
 
 		if (tagline.size() > 0) {
 			validation = tagline.get(0).getText().strip();
+			System.out.println(validation);
 		}
 		return validation;
 	}
 
 	public void passed() {
-		System.out.println("Status: Passed");
+		System.out.println("Status: PASSED");
 		System.out.println("=========================");
 	}
 

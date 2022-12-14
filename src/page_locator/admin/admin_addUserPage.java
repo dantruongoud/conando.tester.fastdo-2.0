@@ -51,11 +51,11 @@ public class admin_addUserPage {
         return getTitle().equals(pageTitle);
     }
 
-    public void register(String username, String phone, String firstname, String lastname) {
+    public void register(String username, String firstname, String lastname, String phone) {
         username_input.sendKeys(username);
-        phone_input.sendKeys(phone);
         firstname_input.sendKeys(firstname);
         lastname_input.sendKeys(lastname);
+        phone_input.sendKeys(phone);
         // enterPassword(password);
         create.click();
     }
@@ -69,8 +69,8 @@ public class admin_addUserPage {
     }
 
     public void print() {
-        System.out.println("Passed");
-        cleartxt();
+        System.out.println("Status: Passed");
         System.out.println("=========================");
+        cleartxt();
     }
 }
