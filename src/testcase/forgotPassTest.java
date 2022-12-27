@@ -37,7 +37,7 @@ public class forgotPassTest {
 
                 System.out.println("Testcase: " + list_data_test[i].testcase);
                 forgotPass.forgot(list_data_test[i].email);
-                Thread.sleep(1000);
+                Thread.sleep(1200);
 
                 String validation = using.messgaeError();
 
@@ -58,8 +58,7 @@ public class forgotPassTest {
                         break;
                     default:
                         validation = using.messgaeError_tagline();
-                        if (validation != null) {
-                            System.out.println(validation);
+                        if (validation.equals("Đã gửi email thành công!")) {
                             using.passed();
                         } else {
                             using.failed();

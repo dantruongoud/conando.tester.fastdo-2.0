@@ -78,8 +78,8 @@ public class addUser_incorpTest {
                     using.failed();
                 }
             } else {
-                using.failed();
                 System.out.println("Verify title popup is invalid...");
+                using.failed();
                 driver.close();
             }
         } catch (Exception e) {

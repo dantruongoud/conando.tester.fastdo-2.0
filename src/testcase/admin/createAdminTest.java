@@ -8,16 +8,6 @@ import page_locator.SignInPage;
 import page_locator.admin.createAdminPage;
 
 public class createAdminTest {
-    int testcase;
-    String email, lastname, firstname, password;
-
-    public createAdminTest(int testcase, String email, String lastname, String firstname, String password) {
-        this.testcase = testcase;
-        this.email = email;
-        this.lastname = lastname;
-        this.firstname = firstname;
-        this.password = password;
-    }
 
     public static void main(String[] args) {
         try {
@@ -74,6 +64,7 @@ public class createAdminTest {
                 }
             } else {
                 System.out.println("Sai tiêu đề trang hiển thị...");
+                using.failed();
                 driver.close();
             }
         } catch (Exception e) {

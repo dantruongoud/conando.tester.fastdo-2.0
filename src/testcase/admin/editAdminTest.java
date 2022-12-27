@@ -16,6 +16,7 @@ public class editAdminTest {
             SignInPage using = new SignInPage(driver);
             editAdminPage edit = new editAdminPage(driver);
             excelHelpers excel = new excelHelpers();
+
             excel.setExcelSheet("admin - editAdmin");
 
             using.login_admin();
@@ -43,7 +44,7 @@ public class editAdminTest {
                             break;
                         case "Bạn chưa nhập số điện thoại!":
                             edit.print();
-                            break; 
+                            break;
                         case "Số điện thoại không đúng!":
                             edit.print();
                             break;
@@ -71,6 +72,8 @@ public class editAdminTest {
                 }
             } else {
                 System.out.println("Title is wrong...");
+                using.failed();
+                driver.close();
             }
         } catch (Exception e) {
             e.printStackTrace();

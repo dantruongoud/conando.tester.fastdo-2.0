@@ -25,11 +25,15 @@ public class editUserTest {
             using.login_admin();
             admin_createUser.crud_user.click();
             using.waitForPageLoaded();
+
             if (admin_createUser.verifyTitle()) {
+
                 del.search_result("truong@gmail.com");
                 using.waitForPageLoaded();
+
                 edit_user.edit_btn.click();
                 Thread.sleep(1000);
+
                 if (edit_user.verify_title()) {
 
                     edit_user.cleartxt();
@@ -71,10 +75,11 @@ public class editUserTest {
                     }
                 } else {
                     System.out.println("Không tìm thấy popup chỉnh sửa...");
+                    using.failed();
                 }
             } else {
                 System.out.println("Hiển thị sai tiêu đề trang...");
-
+                using.failed();
             }
         } catch (Exception e) {
             e.printStackTrace();

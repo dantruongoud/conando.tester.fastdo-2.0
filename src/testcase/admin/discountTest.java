@@ -59,8 +59,8 @@ public class discountTest {
                     Thread.sleep(1200);
                 }
             } else {
-                using.failed();
                 System.out.println("Sai hiển thị tiêu đề trang...");
+                using.failed();
                 driver.close();
             }
         } catch (Exception e) {

@@ -66,6 +66,7 @@ public class create_bannerTest {
                 }
             } else {
                 System.out.println("Page title is wrong...");
+                using.failed();
                 driver.close();
             }
         } catch (Exception e) {

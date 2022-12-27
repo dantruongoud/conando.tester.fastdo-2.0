@@ -26,8 +26,10 @@ public class deleteUserTest {
                 Alert alert = driver.switchTo().alert();
                 System.out.println(alert.getText());
                 alert.accept();
+                using.passed();
             } else {
                 System.out.println("Tiêu đề trang sai hiển thị...");
+                using.failed();
                 driver.close();
             }
         } catch (Exception e) {

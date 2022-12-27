@@ -77,6 +77,7 @@ public class rechargePage {
         String text = "";
         if (label_validation.isDisplayed()) {
             text = label_validation.getText().strip();
+            System.out.println("Notify: " + text);
         }
         return text;
     }

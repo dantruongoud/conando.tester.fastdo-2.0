@@ -30,7 +30,7 @@ public class SignInPage {
 	@FindBy(xpath = "//span[@class='has-text-weight-medium']")
 	private WebElement title_page;
 
-	@FindBy(how = How.XPATH, xpath = "//div[@class='has-text-danger has-text-centered is-italic mb-3']")
+	@FindBy(how = How.XPATH, xpath = "//div[@class='has-text-danger has-text-centered is-italic mt-3']")
 	private List<WebElement> validation;
 
 	@FindBy(css = "a[class='button is-link']")
@@ -156,7 +156,7 @@ public class SignInPage {
 
 		if (tagline.size() > 0) {
 			validation = tagline.get(0).getText().strip();
-			System.out.println(validation);
+			System.out.println("Notify: " + validation);
 		}
 		return validation;
 	}
