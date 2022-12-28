@@ -7,8 +7,6 @@ import page_locator.SignInPage;
 import page_locator.edit_incorpPage;
 import page_locator.upgrade_productPage;
 
-
-
 public class upgrade_productTest {
     public static void main(String[] args) {
         try {
@@ -26,6 +24,7 @@ public class upgrade_productTest {
 
             String noti = using.messgaeError_tagline();
             if (noti != null) {
+                System.out.println("=========================");
                 System.out.println("Testcase: 1");
                 System.out.println(noti);
                 using.passed();
@@ -37,6 +36,8 @@ public class upgrade_productTest {
 
                 System.out.println("Bạn đang thanh toán: " + upgrade.price_amount());
                 upgrade.button.click();
+                
+                System.out.println("=========================");
                 System.out.println("Testcase: 2");
 
                 Thread.sleep(1000);
