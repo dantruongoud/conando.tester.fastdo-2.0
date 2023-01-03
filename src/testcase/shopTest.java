@@ -20,7 +20,7 @@ public class shopTest {
 
     public static void main(String[] args) {
         try {
-            
+
             shopTest[] list_data_test = {
                     new shopTest(1, "0", "0"),
                     new shopTest(2, "30", "1"),
@@ -74,11 +74,12 @@ public class shopTest {
                                 break;
                             default:
                                 noti = using.messgaeError_tagline();
-                                if (noti.isEmpty()) {
+                                if (noti.length() == 0) {
+
                                     shoppage.confirm.click();
+
                                     if (shoppage.verify_donetext()) {
                                         System.out.println(shoppage.get_text());
-                                        System.out.println("Hoàn tất mua sản phẩm");
                                         using.passed();
                                     }
                                 } else {
