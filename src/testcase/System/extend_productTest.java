@@ -35,6 +35,7 @@ public class extend_productTest {
                 extend.continuebtn.click();
                 Thread.sleep(1000);
                 System.out.println("Bạn đang thanh toán: " + extend.price_amount());
+                
                 System.out.println("=========================");
                 System.out.println("Testcase: 2");
                 extend.confirm.click();
