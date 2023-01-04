@@ -23,7 +23,7 @@ public class upgrade_productTest {
                     new upgrade_productTest(1, "100"),
                     new upgrade_productTest(2, "0"),
                     new upgrade_productTest(3, "2"),
-                    new upgrade_productTest(4, "12"),
+                    new upgrade_productTest(4, "6"),
             };
 
             baseSetup init = new baseSetup();

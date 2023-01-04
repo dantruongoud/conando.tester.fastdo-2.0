@@ -1,5 +1,6 @@
 package testcase.admin;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 
 import common.baseSetup;
@@ -42,20 +43,23 @@ public class rechargeTest {
                         using.passed();
                         add_money.tr.click();
                         add_money.confirm_btn.click();
-
+                        Thread.sleep(500);
+                        System.out.println("=========================");
+                        System.out.println("Testcase: 2");
                         validation_input = add_money.validation();
                         if (validation_input != null) {
-                            System.out.println("=========================");
-                            System.out.println("Testcase: 2");
                             System.out.println(validation_input);
                             using.passed();
                             add_money.system_recharge("123", "Cho người nghèo");
                             add_money.confirm_btn.click();
-
+                            Thread.sleep(500);
+                            Alert alert = driver.switchTo().alert();
+                            alert.accept();
+                            Thread.sleep(500);
+                            System.out.println("=========================");
+                            System.out.println("Testcase: 3");
                             String noti = using.messgaeError_tagline();
                             if (noti != null) {
-                                System.out.println("=========================");
-                                System.out.println("Testcase: 3");
                                 using.passed();
                             } else {
                                 using.failed();

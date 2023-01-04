@@ -68,7 +68,7 @@ public class shopTest {
                                 break;
                             case "Số tháng sử dụng tối thiểu là 3 tháng.":
                                 System.out.println(noti);
-                                // shoppage.del_tagline();
+                                shoppage.del_tagline();
                                 shoppage.clearTxt();
                                 using.passed();
                                 break;
@@ -89,6 +89,8 @@ public class shopTest {
                         }
                         Thread.sleep(1200);
                     }
+                } else {
+                    using.failed();
                 }
             }
         } catch (Exception e) {

@@ -77,7 +77,7 @@ public class addUser_incorpPage {
 
     public void print() {
         try {
-            System.out.println("Status: Passed");
+            System.out.println("Status: PASSED");
             System.out.println("=========================");
             cleartxt();
         } catch (Exception e) {

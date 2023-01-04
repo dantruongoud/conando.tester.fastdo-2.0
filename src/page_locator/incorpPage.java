@@ -78,14 +78,14 @@ public class incorpPage {
         List<WebElement> errorMessage = driver.findElements(tagline);
         if (errorMessage.size() > 0) {
             validation = errorMessage.get(0).getText().strip();
-            System.out.println(validation);
+            System.out.println("Notify: " + validation);
         }
         return validation;
     }
 
     public void print() {
         clearTXT();
-        System.out.println("Status: Passed");
+        System.out.println("Status: PASSED");
         System.out.println("=========================");
     }
 

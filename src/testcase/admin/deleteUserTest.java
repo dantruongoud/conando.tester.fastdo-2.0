@@ -14,13 +14,15 @@ public class deleteUserTest {
             baseSetup init = new baseSetup();
             WebDriver driver = init.initChromeDriver();
             SignInPage using = new SignInPage(driver);
-            using.login_admin();
             admin_addUserPage admin_createUser = new admin_addUserPage(driver);
+            using.login_admin();
             admin_createUser.crud_user.click();
+            using.waitForPageLoaded();
             if (admin_createUser.verifyTitle()) {
                 Thread.sleep(1200);
                 deleteUserPage del = new deleteUserPage(driver);
                 del.search_result("ndtruong@gmail.com");
+                Thread.sleep(1000);
                 del.delete_btn.click();
                 Thread.sleep(500);
                 Alert alert = driver.switchTo().alert();

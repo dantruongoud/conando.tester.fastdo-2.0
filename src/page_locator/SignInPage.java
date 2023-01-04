@@ -69,6 +69,7 @@ public class SignInPage {
 		for (int i = 0; i < validation.size(); i++) {
 			tagline = validation.get(i).getText().strip();
 			if (tagline.length() > 0) {
+				System.out.println("Notify: " + tagline);
 				break;
 			}
 		}
@@ -80,6 +81,7 @@ public class SignInPage {
 		for (int i = 0; i < validation_fogot.size(); i++) {
 			tagline = validation_fogot.get(i).getText().strip();
 			if (tagline.length() > 0) {
+				System.out.println("Notify: " + tagline);
 				break;
 			}
 		}

@@ -59,11 +59,12 @@ public class edit_incorpPage {
     }
 
     public void create_incorp(String Name_incorp,
-            String Address_incorp, String Phone_incorp, String Mail_incorp) {
+            String Address_incorp, String Phone_incorp, String Mail_incorp) throws Exception {
         name_incorp.sendKeys(Name_incorp);
         address_incorp.sendKeys(Address_incorp);
         phone_incorp.sendKeys(Phone_incorp);
         mail_incorp.sendKeys(Mail_incorp);
+        Thread.sleep(500);
         save.click();
     }
 
@@ -79,7 +80,7 @@ public class edit_incorpPage {
     }
 
     public void print() {
-        System.out.println("Status: Passed");
+        System.out.println("Status: PASSED");
         System.out.println("=========================");
         clearTXT();
     }

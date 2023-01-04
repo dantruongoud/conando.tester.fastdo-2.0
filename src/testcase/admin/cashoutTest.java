@@ -1,5 +1,6 @@
 package testcase.admin;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 
 import common.baseSetup;
@@ -20,6 +21,7 @@ public class cashoutTest {
 
             using.login_admin();
             use.crud_request.click();
+            using.waitForPageLoaded();
 
             if (use.verify_title()) {
                 cashout.naviga_cashout.click();
@@ -37,18 +39,21 @@ public class cashoutTest {
                         using.passed();
                         add_money.tr.click();
                         add_money.confirm_btn.click();
+                        System.out.println("=========================");
+                        System.out.println("Testcase: 2");
                         validation_input = add_money.validation();
                         if (validation_input != null) {
-                            System.out.println("=========================");
-                            System.out.println("Testcase: 2");
                             System.out.println(validation_input);
                             using.passed();
                             cashout.system_cashout("123", "Lấy tiền người giàu");
                             add_money.confirm_btn.click();
+                            Thread.sleep(500);
+                            Alert alert = driver.switchTo().alert();
+                            alert.accept();
+                            System.out.println("=========================");
+                            System.out.println("Testcase: 3");
                             String noti = using.messgaeError_tagline();
                             if (noti != null) {
-                                System.out.println("=========================");
-                                System.out.println("Testcase: 3");
                                 System.out.println(noti);
                                 using.passed();
                             } else {

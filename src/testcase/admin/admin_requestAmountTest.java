@@ -7,8 +7,6 @@ import page_locator.SignInPage;
 import page_locator.incorpPage;
 import page_locator.admin.admin_requestAmountPage;
 
-
-
 public class admin_requestAmountTest {
     public static void main(String[] args) {
         try {
@@ -19,6 +17,7 @@ public class admin_requestAmountTest {
 
             admin_requestAmountPage use = new admin_requestAmountPage(driver);
             use.crud_request.click();
+            login_all.waitForPageLoaded();
             if (use.verify_title()) {
                 use.find_id();
                 incorpPage get = new incorpPage(driver);

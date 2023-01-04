@@ -13,7 +13,7 @@ public class shopPage {
     @FindBy(xpath = "//span[@class='ml-2'][contains(text(),'Cửa hàng')]")
     public WebElement naviga;
 
-    @FindBy(xpath = "//span[normalize-space()='fTodolist']")
+    @FindBy(xpath = "//span[normalize-space()='fOKRs']")
     public WebElement list_shop;
 
     @FindBy(className = "px-3")
@@ -64,7 +64,7 @@ public class shopPage {
     }
 
     public boolean verify_title_modal() {
-        String title_modal = "fTodolist";
+        String title_modal = "fOKRs";
         return title.getText().strip().equals(title_modal);
     }
 
