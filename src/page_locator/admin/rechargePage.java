@@ -23,7 +23,7 @@ public class rechargePage {
     @FindBy(xpath = "//input[@placeholder='Email, họ và tên khách hàng']")
     private WebElement search_input;
 
-    @FindBy(tagName = "lable")
+    @FindBy(css = ".has-text-weight-semibold.has-text-danger")
     private WebElement label_validation;
 
     @FindBy(xpath = "//input[@placeholder='Nhập số tiền nạp']")

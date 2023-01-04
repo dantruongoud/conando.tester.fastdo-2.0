@@ -167,6 +167,7 @@ public class SignInPage {
 	}
 
 	public void failed() {
-
+		System.out.println("Status: FAILED");
+		System.out.println("=========================");
 	}
 }

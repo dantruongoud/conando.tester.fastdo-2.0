@@ -1,5 +1,6 @@
 package page_locator.admin;
 
+import java.awt.event.KeyEvent;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -9,8 +10,9 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
-
 import page_locator.SignInPage;
+import java.awt.Robot;
+import java.awt.AWTException;
 
 public class admin_activeIncorpPage {
     private WebDriver driver;
@@ -36,6 +38,9 @@ public class admin_activeIncorpPage {
     @FindBy(xpath = "//span[contains(text(),'Cập nhật')]")
     public WebElement save;
 
+    @FindBy(xpath = "//input[@placeholder='Email, họ và tên khách hàng']")
+    private WebElement txtSearch;
+
     public admin_activeIncorpPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -55,6 +60,18 @@ public class admin_activeIncorpPage {
 
     public void chose_user() {
         try {
+            txtSearch.sendKeys("truong");
+            Thread.sleep(1000);
+
+            Robot rb = null;
+            try {
+                rb = new Robot();
+            } catch (AWTException e) {
+                e.printStackTrace();
+            }
+            rb.keyPress(KeyEvent.VK_ENTER);
+            rb.keyRelease(KeyEvent.VK_ENTER);
+            
             for (int i = 0; i < table.size(); i++) {
                 List<WebElement> tdList = table.get(i).findElements(By.xpath("//td/a/div/p[1]"));
                 String td_username = tdList.get(i).getText().strip();

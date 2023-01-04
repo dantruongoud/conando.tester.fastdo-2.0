@@ -1,4 +1,4 @@
-package testcase;
+package testcase.System;
 
 import org.openqa.selenium.WebDriver;
 

@@ -56,7 +56,6 @@ public class rechargeTest {
                             if (noti != null) {
                                 System.out.println("=========================");
                                 System.out.println("Testcase: 3");
-                                System.out.println(noti);
                                 using.passed();
                             } else {
                                 using.failed();

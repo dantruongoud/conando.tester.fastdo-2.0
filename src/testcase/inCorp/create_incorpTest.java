@@ -1,4 +1,4 @@
-package testcase;
+package testcase.inCorp;
 
 import org.openqa.selenium.WebDriver;
 
@@ -50,7 +50,7 @@ public class create_incorpTest {
                         incorppage.print();
                         break;
                     default:
-                        if (incorppage.messgaeError() != null) {
+                        if (noti.equals("Đang gửi email xác nhận...")) {
                             System.out.println("Hoàn tất tạo mới tổ chức, nhập mã xác thực ở email");
                             login_all.passed();
                         } else {

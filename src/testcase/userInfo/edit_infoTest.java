@@ -1,4 +1,4 @@
-package testcase;
+package testcase.userInfo;
 
 import org.openqa.selenium.WebDriver;
 

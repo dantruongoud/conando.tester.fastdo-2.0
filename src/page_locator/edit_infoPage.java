@@ -79,7 +79,7 @@ public class edit_infoPage {
     }
 
     public void print() {
-        System.out.println("Status: Passed");
+        System.out.println("Status: PASSED");
         System.out.println("=========================");
         clearTXT();
     }
