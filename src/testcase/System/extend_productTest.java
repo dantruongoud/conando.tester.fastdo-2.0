@@ -32,13 +32,16 @@ public class extend_productTest {
 
                 extend.usercorrect.sendKeys("1");
                 Thread.sleep(1000);
+
                 extend.continuebtn.click();
                 Thread.sleep(1000);
+
                 System.out.println("Bạn đang thanh toán: " + extend.price_amount());
-                
+
                 System.out.println("=========================");
                 System.out.println("Testcase: 2");
                 extend.confirm.click();
+
                 if (extend.get_textdone() != null) {
                     System.out.println(extend.get_textdone());
                     using.passed();
