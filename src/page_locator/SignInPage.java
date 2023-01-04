@@ -30,8 +30,11 @@ public class SignInPage {
 	@FindBy(xpath = "//span[@class='has-text-weight-medium']")
 	private WebElement title_page;
 
-	@FindBy(how = How.XPATH, xpath = "//div[@class='has-text-danger has-text-centered is-italic mt-3']")
+	@FindBy(how = How.XPATH, xpath = "//div[@class='has-text-danger has-text-centered is-italic mb-3']")
 	private List<WebElement> validation;
+
+	@FindBy(how = How.XPATH, xpath = "//div[@class='has-text-danger has-text-centered is-italic mt-3']")
+	private List<WebElement> validation_fogot;
 
 	@FindBy(css = "a[class='button is-link']")
 	@CacheLookup
@@ -65,6 +68,17 @@ public class SignInPage {
 		String tagline = "";
 		for (int i = 0; i < validation.size(); i++) {
 			tagline = validation.get(i).getText().strip();
+			if (tagline.length() > 0) {
+				break;
+			}
+		}
+		return tagline;
+	}
+
+	public String messgaeError_fogot() {
+		String tagline = "";
+		for (int i = 0; i < validation_fogot.size(); i++) {
+			tagline = validation_fogot.get(i).getText().strip();
 			if (tagline.length() > 0) {
 				break;
 			}

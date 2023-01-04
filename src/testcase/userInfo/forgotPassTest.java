@@ -39,7 +39,7 @@ public class forgotPassTest {
                 forgotPass.forgot(list_data_test[i].email);
                 Thread.sleep(1200);
 
-                String validation = using.messgaeError();
+                String validation = using.messgaeError_fogot();
 
                 switch (validation) {
                     case "Bạn chưa nhập địa chỉ email":
