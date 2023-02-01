@@ -6,6 +6,18 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class edit_infoPage {
+
+    public String[] tagline = {
+            "Bạn chưa nhập họ và tên cho tài khoản!",
+            "Mật khẩu cũ không chính xác!",
+            "Đã cập nhật thông tin thành công!",
+            "Bạn chưa nhập số điện thoại!",
+            "Số điện thoại không đúng!",
+            "Bạn chưa nhập mật khẩu cũ!",
+            "Bạn chưa nhập mật khẩu mới!",
+            "Đã cập nhật thông tin và mật khẩu thành công!"
+    };
+
     private WebDriver driver;
 
     @FindBy(xpath = "//span[@class='ml-2 has-text-white']")
@@ -75,13 +87,5 @@ public class edit_infoPage {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
-
-    public void print() {
-        System.out.println("Status: PASSED");
-        System.out.println("=========================");
-        clearTXT();
-    }
-
 }

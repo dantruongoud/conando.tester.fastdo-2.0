@@ -7,9 +7,15 @@ import org.openqa.selenium.support.PageFactory;
 
 public class addUser_incorpPage {
 
+    public String[] tagline = {
+            "Địa chỉ email không đúng định dạng!",
+            "Bạn chưa nhập họ và tên cho tài khoản!",
+            "Bạn chưa nhập địa chỉ email!",
+            "Đang gửi email thông tin tài khoản..."
+    };
     private WebDriver driver;
 
-    SignInPage get = new SignInPage(driver);
+    SignInPage index = new SignInPage(driver);
 
     @FindBy(xpath = "//span[contains(text(),'Người dùng')]")
     private WebElement userIncorp;
@@ -41,7 +47,7 @@ public class addUser_incorpPage {
         try {
             if (userIncorp.isDisplayed()) {
                 userIncorp.click();
-                get.waitForPageLoaded();
+                index.waitForPageLoaded();
                 addBtn.click();
             }
         } catch (Exception e) {
@@ -73,15 +79,5 @@ public class addUser_incorpPage {
         lastname_input.sendKeys(lastname);
         firstname_input.sendKeys(firstname);
         button.click();
-    }
-
-    public void print() {
-        try {
-            System.out.println("Status: PASSED");
-            System.out.println("=========================");
-            cleartxt();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }

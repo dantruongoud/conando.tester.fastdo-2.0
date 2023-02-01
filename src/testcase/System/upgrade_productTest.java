@@ -28,11 +28,11 @@ public class upgrade_productTest {
 
             baseSetup init = new baseSetup();
             WebDriver driver = init.initChromeDriver();
-            SignInPage using = new SignInPage(driver);
+            SignInPage index = new SignInPage(driver);
             edit_incorpPage get = new edit_incorpPage(driver);
             upgrade_productPage upgrade = new upgrade_productPage(driver);
 
-            using.login();
+            index.login();
             get.clickNavigation();
             get.find.click();
             upgrade.click_upgrade();
@@ -43,12 +43,12 @@ public class upgrade_productTest {
 
             upgrade.doubleClick();
 
-            String noti = using.messgaeError_tagline();
+            String noti = index.messgaeError_tagline();
             if (noti.equals("Số dư của bạn không đủ để thanh toán, vui lòng nạp thêm.")) {
                 System.out.println(noti);
-                using.passed();
+                index.passed();
                 upgrade.btnBack.click();
-                using.waitForPageLoaded();
+                index.waitForPageLoaded();
 
                 for (int i = 1; i < data.length; i++) {
 
@@ -59,27 +59,27 @@ public class upgrade_productTest {
                     upgrade.usercorrect.sendKeys(data[i].user);
                     upgrade.doubleClick();
 
-                    noti = using.messgaeError_tagline();
+                    noti = index.messgaeError_tagline();
                     switch (noti) {
                         case "Số lượng người dùng phải lớn hơn gói hiện tại.":
                             System.out.println(noti);
-                            using.passed();
-                            upgrade.btndeleteTagline.click();
+                            index.passed();
+                            index.btnDelTagline.click();
                             break;
                         default:
                             if (upgrade.get_textdone() != null) {
                                 System.out.println(upgrade.get_textdone());
-                                using.passed();
+                                index.passed();
                                 upgrade.button.click();
                             } else {
-                                using.failed();
+                                index.failed();
                             }
                             break;
                     }
                     Thread.sleep(1200);
                 }
             } else {
-                using.failed();
+                index.failed();
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -92,17 +92,6 @@ public class shopPage {
         }
     }
 
-    public void del_tagline() {
-        try {
-            WebElement clear = driver.findElement(By.xpath("//a[@class='delete']"));
-            if (clear.isDisplayed()) {
-                clear.click();
-            }
-        } catch (Exception err) {
-            err.printStackTrace();
-        }
-    }
-
     // Tính công thức giảm giá để đối chiếu với cửa hàng
     public int get_price() {
         String price_text = price.getText().strip();

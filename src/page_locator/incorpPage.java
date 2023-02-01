@@ -10,7 +10,14 @@ import org.openqa.selenium.support.PageFactory;
 
 public class incorpPage {
 
-    private WebDriver driver;
+    public String[] taglinetext = {
+            "Bạn chưa nhập tên tổ chức.",
+            "Bạn chưa nhập địa chỉ tổ chức.",
+            "Bạn chưa nhập Số điện thoại người đại diện.",
+            "Bạn chưa nhập email tổ chức."
+    };
+
+    WebDriver driver;
 
     @FindBy(xpath = "//span[contains(text(),'Tổ chức')]")
     private WebElement naviga_incorp;
@@ -43,11 +50,13 @@ public class incorpPage {
         PageFactory.initElements(driver, this);
     }
 
+    SignInPage index = new SignInPage(driver);
+
     public void clickNavigation() {
         try {
             if (naviga_incorp.isDisplayed()) {
                 naviga_incorp.click();
-                wait_incorp();
+                index.waitForPageLoaded();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -78,18 +87,12 @@ public class incorpPage {
         List<WebElement> errorMessage = driver.findElements(tagline);
         if (errorMessage.size() > 0) {
             validation = errorMessage.get(0).getText().strip();
-            System.out.println("Notify: " + validation);
+            System.out.println("Notify System: " + validation);
         }
         return validation;
     }
 
-    public void print() {
-        clearTXT();
-        System.out.println("Status: PASSED");
-        System.out.println("=========================");
-    }
-
-    public void clearTXT() {
+    public void clearDatatest() {
         try {
             name_incorp.clear();
             address_incorp.clear();
@@ -98,10 +101,5 @@ public class incorpPage {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public void wait_incorp() {
-        SignInPage wait = new SignInPage(driver);
-        wait.waitForPageLoaded();
     }
 }

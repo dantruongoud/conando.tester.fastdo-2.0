@@ -13,22 +13,22 @@ public class extend_productTest {
         try {
             baseSetup init = new baseSetup();
             WebDriver driver = init.initChromeDriver();
-            SignInPage using = new SignInPage(driver);
+            SignInPage index = new SignInPage(driver);
             edit_incorpPage get = new edit_incorpPage(driver);
             extend_productPage extend = new extend_productPage(driver);
 
-            using.login();
+            index.login();
             get.clickNavigation();
             get.find.click();
             extend.click_extend();
             extend.continuebtn.click();
 
-            String noti = using.messgaeError_tagline();
+            String noti = index.messgaeError_tagline();
             if (noti != null) {
                 System.out.println("=========================");
                 System.out.println("Testcase: 1");
                 System.out.println(noti);
-                using.passed();
+                index.passed();
 
                 extend.usercorrect.sendKeys("1");
                 Thread.sleep(1000);
@@ -44,12 +44,12 @@ public class extend_productTest {
 
                 if (extend.get_textdone() != null) {
                     System.out.println(extend.get_textdone());
-                    using.passed();
+                    index.passed();
                 } else {
-                    using.failed();
+                    index.failed();
                 }
             } else {
-                using.failed();
+                index.failed();
             }
         } catch (Exception e) {
             e.printStackTrace();

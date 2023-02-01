@@ -30,19 +30,19 @@ public class shopTest {
             baseSetup init = new baseSetup();
             WebDriver driver = init.initChromeDriver();
             shopPage shoppage = new shopPage(driver);
-            SignInPage using = new SignInPage(driver);
+            SignInPage index = new SignInPage(driver);
 
-            using.login();
+            index.login();
             shoppage.naviga.click();
-            using.waitForPageLoaded();
+            index.waitForPageLoaded();
 
             if (shoppage.verifyTitle()) {
 
                 shoppage.list_shop.click();
-                using.waitForPageLoaded();
+                index.waitForPageLoaded();
 
                 shoppage.buy.click();
-                using.waitForPageLoaded();
+                index.waitForPageLoaded();
                 if (shoppage.verify_title_modal()) {
 
                     shoppage.chose_incorp.click();
@@ -58,39 +58,39 @@ public class shopTest {
                         shoppage.buy_product(list_data_test[i].user, list_data_test[i].month);
                         Thread.sleep(1300);
 
-                        String noti = using.messgaeError_tagline();
+                        String noti = index.messgaeError_tagline();
                         switch (noti) {
                             case "Số lượng người dùng tối thiểu là 5 người.":
                                 System.out.println(noti);
                                 // shoppage.del_tagline();
                                 shoppage.clearTxt();
-                                using.passed();
+                                index.passed();
                                 break;
                             case "Số tháng sử dụng tối thiểu là 3 tháng.":
                                 System.out.println(noti);
-                                shoppage.del_tagline();
+                                index.btnDelTagline.click();
                                 shoppage.clearTxt();
-                                using.passed();
+                                index.passed();
                                 break;
                             default:
-                                noti = using.messgaeError_tagline();
+                                noti = index.messgaeError_tagline();
                                 if (noti.length() == 0) {
 
                                     shoppage.confirm.click();
 
                                     if (shoppage.verify_donetext()) {
                                         System.out.println(shoppage.get_text());
-                                        using.passed();
+                                        index.passed();
                                     }
                                 } else {
-                                    using.failed();
+                                    index.failed();
                                 }
                                 break;
                         }
                         Thread.sleep(1200);
                     }
                 } else {
-                    using.failed();
+                    index.failed();
                 }
             }
         } catch (Exception e) {

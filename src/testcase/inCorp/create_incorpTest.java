@@ -17,10 +17,10 @@ public class create_incorpTest {
 
             baseSetup init = new baseSetup();
             WebDriver driver = init.initChromeDriver();
-            SignInPage login_all = new SignInPage(driver);
+            SignInPage index = new SignInPage(driver);
             incorpPage incorppage = new incorpPage(driver);
 
-            login_all.login();
+            index.login();
             incorppage.clickNavigation();
             incorppage.add_incorp.click();
             Thread.sleep(1000);
@@ -31,34 +31,51 @@ public class create_incorpTest {
                 System.out.println("=========================");
 
                 System.out.println("Testcase: " + excel.getCellData("TCID", i));
+                incorppage.clearDatatest();
+
                 incorppage.create_incorp(excel.getCellData("name", i), excel.getCellData("address", i),
                         excel.getCellData("phone", i), excel.getCellData("mail", i));
                 Thread.sleep(1200);
 
+                Boolean passed = false;
                 String noti = incorppage.messgaeError();
-                switch (noti) {
-                    case "Bạn chưa nhập tên tổ chức.":
-                        incorppage.print();
+                for (int j = 0; j < incorppage.taglinetext.length; j++) {
+                    if (noti.equals(incorppage.taglinetext[j])) {
+                        passed = true;
+                        index.passed();
                         break;
-                    case "Bạn chưa nhập địa chỉ tổ chức.":
-                        incorppage.print();
+                    } else if (noti.contains("Đang gửi email xác nhận...")) {
+                        passed = true;
+                        index.passed();
                         break;
-                    case "Bạn chưa nhập Số điện thoại người đại diện.":
-                        incorppage.print();
-                        break;
-                    case "Bạn chưa nhập email tổ chức.":
-                        incorppage.print();
-                        break;
-                    default:
-                        if (noti.equals("Đang gửi email xác nhận...")) {
-                            System.out.println("Hoàn tất tạo mới tổ chức, nhập mã xác thực ở email");
-                            login_all.passed();
-                        } else {
-                            login_all.failed();
-                        }
-                        break;
+                    }
                 }
-                Thread.sleep(1200);
+                if (!passed)
+                    index.failed();
+                    
+                // switch (noti) {
+                // case "Bạn chưa nhập tên tổ chức.":
+                // incorppage.print();
+                // break;
+                // case "Bạn chưa nhập địa chỉ tổ chức.":
+                // incorppage.print();
+                // break;
+                // case "Bạn chưa nhập Số điện thoại người đại diện.":
+                // incorppage.print();
+                // break;
+                // case "Bạn chưa nhập email tổ chức.":
+                // incorppage.print();
+                // break;
+                // default:
+                // if (noti.equals("Đang gửi email xác nhận...")) {
+                // System.out.println("Hoàn tất tạo mới tổ chức, nhập mã xác thực ở email");
+                // index.passed();
+                // } else {
+                // index.failed();
+                // }
+                // break;
+                // }
+                // Thread.sleep(1200);
             }
         } catch (Exception e) {
             e.printStackTrace();

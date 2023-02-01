@@ -17,11 +17,11 @@ public class addUser_incorpTest {
 
             baseSetup init = new baseSetup();
             WebDriver driver = init.initChromeDriver();
-            SignInPage using = new SignInPage(driver);
+            SignInPage index = new SignInPage(driver);
             edit_incorpPage get = new edit_incorpPage(driver);
             addUser_incorpPage addUser = new addUser_incorpPage(driver);
 
-            using.login();
+            index.login();
             get.clickNavigation();
             get.find.click();
             addUser.naviga_user();
@@ -29,57 +29,67 @@ public class addUser_incorpTest {
 
             if (addUser.verifyTitle()) {
 
+                System.out.println("=========================");
                 System.out.println("Testcase: " + excel.getCellData("TCID", 1));
                 addUser.email.sendKeys(excel.getCellData("email", 1));
                 addUser.button.click();
 
-                String noti = using.messgaeError_tagline();
+                String noti = index.messgaeError_tagline();
 
                 if (noti.equals("Địa chỉ email này đã có trong tổ chức của bạn.")) {
 
-                    addUser.print();
-
+                    index.passed();
                     Thread.sleep(1500);
 
                     for (int i = 2; i < 7; i++) {
                         System.out.println("=========================");
-
                         System.out.println("Testcase: " + excel.getCellData("TCID", i));
+
+                        addUser.cleartxt();
                         addUser.createUser(excel.getCellData("email", i), excel.getCellData("lastname", i),
                                 excel.getCellData("firstname", i));
                         Thread.sleep(1000);
 
-                        noti = using.messgaeError_tagline();
-
-                        switch (noti) {
-                            case "Địa chỉ email không đúng định dạng!":
-                                addUser.print();
+                        Boolean passed = false;
+                        noti = index.messgaeError_tagline();
+                        for (int j = 0; j < addUser.tagline.length; j++) {
+                            if (noti.equals(addUser.tagline[j])) {
+                                passed = true;
+                                index.passed();
                                 break;
-
-                            case "Bạn chưa nhập họ và tên cho tài khoản!":
-                                addUser.print();
-                                break;
-
-                            case "Bạn chưa nhập địa chỉ email!":
-                                addUser.print();
-                                break;
-
-                            default:
-                                if (noti.equals("Đang gửi email thông tin tài khoản...")) {
-                                    using.passed();
-                                } else {
-                                    using.failed();
-                                }
-                                break;
+                            }
                         }
-                        Thread.sleep(1200);
+                        if (!passed)
+                            index.failed();
+                        // switch (noti) {
+                        // case "Địa chỉ email không đúng định dạng!":
+                        // addUser.print();
+                        // break;
+
+                        // case "Bạn chưa nhập họ và tên cho tài khoản!":
+                        // addUser.print();
+                        // break;
+
+                        // case "Bạn chưa nhập địa chỉ email!":
+                        // addUser.print();
+                        // break;
+
+                        // default:
+                        // if (noti.equals("Đang gửi email thông tin tài khoản..")) {
+                        // index.passed();
+                        // } else {
+                        // index.failed();
+                        // }
+                        // break;
+                        // }
+                        // Thread.sleep(1200);
                     }
                 } else {
-                    using.failed();
+                    index.failed();
                 }
             } else {
                 System.out.println("Verify title popup is invalid...");
-                using.failed();
+                index.failed();
                 driver.close();
             }
         } catch (Exception e) {

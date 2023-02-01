@@ -7,7 +7,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
@@ -37,11 +36,13 @@ public class SignInPage {
 	private List<WebElement> validation_fogot;
 
 	@FindBy(css = "a[class='button is-link']")
-	@CacheLookup
 	public WebElement button;
 
 	@FindBy(how = How.ID, id = "notify")
 	private List<WebElement> tagline;
+
+	@FindBy(xpath = "//a[@class='delete']")
+	public WebElement btnDelTagline;
 
 	public SignInPage(WebDriver driver) {
 		this.driver = driver;
@@ -172,7 +173,7 @@ public class SignInPage {
 
 		if (tagline.size() > 0) {
 			validation = tagline.get(0).getText().strip();
-			System.out.println("Notify: " + validation);
+			System.out.println("Notify System: " + validation);
 		}
 		return validation;
 	}

@@ -27,11 +27,11 @@ public class rechargeTest {
 
             baseSetup init = new baseSetup();
             WebDriver driver = init.initChromeDriver();
-            SignInPage login_all = new SignInPage(driver);
+            SignInPage index = new SignInPage(driver);
             rechargePage rechargepage = new rechargePage(driver);
-            incorpPage get = new incorpPage(driver);
+            incorpPage incorp = new incorpPage(driver);
 
-            login_all.login();
+            index.login();
 
             rechargepage.recharge.click();
 
@@ -43,19 +43,19 @@ public class rechargeTest {
                     rechargepage.recharge(list_dataTest[i].amuount);
                     Thread.sleep(1000);
 
-                    String noti = get.messgaeError();
+                    String noti = incorp.messgaeError();
                     switch (noti) {
                         case "Chưa nhập số tiền cần nạp":
                             System.out.println(noti);
                             rechargepage.back.click();
-                            login_all.passed();
+                            index.passed();
                             break;
                         case "Đã gửi yêu cầu nạp tiền, số dư sẽ được cộng sau khi yêu cầu được phê duyệt":
                             System.out.println(noti);
-                            login_all.passed();
+                            index.passed();
                             break;
                         default:
-                            login_all.failed();
+                            index.failed();
                             break;
                     }
                     Thread.sleep(1000);

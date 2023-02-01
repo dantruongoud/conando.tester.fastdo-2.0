@@ -7,6 +7,14 @@ import org.openqa.selenium.support.PageFactory;
 
 public class edit_incorpPage {
 
+    public String[] tagline = {
+            "Bạn chưa nhập tên tổ chức.",
+            "Bạn chưa nhập địa chỉ tổ chức.",
+            "Bạn chưa nhập Số điện thoại người đại diện.",
+            "Bạn chưa nhập email tổ chức.",
+            "Đã cập nhật thông tin tổ chức!"
+    };
+
     private WebDriver driver;
 
     @FindBy(xpath = "//span[contains(text(),'Tổ chức')]")
@@ -68,7 +76,7 @@ public class edit_incorpPage {
         save.click();
     }
 
-    public void clearTXT() {
+    public void clearDataTest() {
         try {
             name_incorp.clear();
             address_incorp.clear();
@@ -77,11 +85,5 @@ public class edit_incorpPage {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public void print() {
-        System.out.println("Status: PASSED");
-        System.out.println("=========================");
-        clearTXT();
     }
 }

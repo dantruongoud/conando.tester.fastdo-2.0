@@ -26,9 +26,6 @@ public class upgrade_productPage {
     @FindBy(xpath = "//a[@class='button']")
     public WebElement btnBack;
 
-    @FindBy(css = "a[class='delete']")
-    public WebElement btndeleteTagline;
-
     public upgrade_productPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
